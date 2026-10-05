@@ -1,0 +1,94 @@
+ai:
+  provider: openai
+  enabled: true
+  model: gpt-5.6-luna
+  api-key-environment-variable: OPENAI_API_KEY
+  max-retries: 3
+  timeout-seconds: 180
+  privacy:
+    dom:
+      allowed-attributes:
+        - id
+        - name
+        - type
+        - placeholder
+        - aria-label
+        - aria-labelledby
+        - role
+        - title
+        - class
+        - data-testid
+        - data-test
+        - data-qa
+        - disabled
+        - scope
+        - for
+        - contenteditable
+      excluded-attributes:
+        - value
+        - src
+        - srcset
+      excluded-element-hints:
+        - company-name
+        - company-logo
+        - logo
+        - brand
+      redacted-terms: []
+      redacted-patterns: []
+    test-data:
+      sensitive-fields:
+        - password
+        - passwd
+        - pwd
+        - api-key
+        - apikey
+        - api_key
+        - token
+        - access-token
+        - refresh-token
+        - secret
+        - client-secret
+        - authorization
+        - cookie
+        - username
+        - user-name
+        - login
+        - email
+        - company-name
+        - company
+      redacted-terms: []
+      redacted-patterns: []
+
+browser:
+  type: chrome
+  headless: false
+  page-load-timeout-seconds: 60
+  wait-timeout-seconds: 30
+  dom-stability-timeout-seconds: 15
+  dom-quiet-period-millis: 750
+  dom-minimum-observation-millis: 1200
+  dom-maximum-elements: 4000
+  auto-navigate-to-default-page: true
+  default-page-url-environment-variable: TEST_PAGE_URL
+
+catalog:
+  directory: catalogs
+  refresh-component-on-selector-failure: true
+  minimum-selector-confidence: 0.50
+
+application:
+  base-package: com.yourcompany.testing
+
+generation:
+  feature-output-directory: src/test/resources/features
+  step-output-directory: src/test/java #/com/yourcompany/testing/steps
+#  generated-step-package: com.yourcompany.testing.steps
+  max-step-repair-attempts: 2
+
+jira:
+  base-url-environment-variable: JIRA_BASE_URL
+  email-environment-variable: JIRA_EMAIL
+  api-token-environment-variable: JIRA_API_TOKEN
+  connect-timeout-seconds: 10
+  request-timeout-seconds: 30
+  max-retries: 3
